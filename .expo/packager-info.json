@@ -1,10 +1,10 @@
 {
   "devToolsPort": 19002,
   "expoServerPort": 19000,
-  "packagerPort": null,
-  "packagerPid": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null,
+  "packagerPort": 19001,
+  "packagerPid": 90309,
+  "expoServerNgrokUrl": "https://h2-xhi.ongar.expo-test.exp.direct",
+  "packagerNgrokUrl": "https://packager.h2-xhi.ongar.expo-test.exp.direct",
+  "ngrokPid": 90329,
   "webpackServerPort": null
 }
