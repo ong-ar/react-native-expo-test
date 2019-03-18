@@ -1,6 +1,11 @@
 import * as React from 'react';
 import { Button, Text, View } from 'react-native';
-import { createAppContainer, createBottomTabNavigator, createStackNavigator, NavigationScreenProp } from 'react-navigation'; // Version can be specified in package.json
+import {
+  createAppContainer,
+  createBottomTabNavigator,
+  createStackNavigator,
+  NavigationScreenProp,
+} from 'react-navigation'; // Version can be specified in package.json
 
 interface IProps {
   navigation: NavigationScreenProp<any, any>;
@@ -8,7 +13,6 @@ interface IProps {
 
 class HomeScreen extends React.Component<IProps> {
   public render() {
-
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <Text>Home Screen</Text>
@@ -33,7 +37,6 @@ class DetailsScreen extends React.Component {
 
 class ProfileScreen extends React.Component<IProps> {
   public render() {
-
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <Text>Profile Screen</Text>
@@ -58,8 +61,8 @@ class ProfileDetailsScreen extends React.Component {
 
 const ProfileStack = createStackNavigator(
   {
-    ProfileDetails: ProfileDetailsScreen,
     Profile: ProfileScreen,
+    ProfileDetails: ProfileDetailsScreen,
   },
   {
     initialRouteName: 'Profile',
@@ -76,12 +79,10 @@ const HomeStack = createStackNavigator(
   },
 );
 
-const TabNavigator = createBottomTabNavigator(
-  {
-    Home: HomeStack,
-    Profile: ProfileStack,
-  },
-);
+const TabNavigator = createBottomTabNavigator({
+  Home: HomeStack,
+  Profile: ProfileStack,
+});
 
 const AppContainer = createAppContainer(TabNavigator);
 
