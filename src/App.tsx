@@ -1,90 +1,22 @@
+import { AppAuth } from 'expo';
 import * as React from 'react';
-import { Button, Text, View } from 'react-native';
-import {
-  createAppContainer,
-  createBottomTabNavigator,
-  createStackNavigator,
-  NavigationScreenProp,
-} from 'react-navigation'; // Version can be specified in package.json
+import { Button, View, Text } from 'react-native';
 
-interface IProps {
-  navigation: NavigationScreenProp<any, any>;
+const config = {
+  issuer: 'https://accounts.google.com',
+  scopes: ['openid', 'profile'],
+  /* This is the CLIENT_ID generated from a Firebase project */
+  clientId: '1060901720488-geiu82asq8t9395af8tudcqnl4t782d7.apps.googleusercontent.com',
+  redirectUrl: 'http://localhost',
+};
+
+async function signInAsync() {
+  const authState = await AppAuth.authAsync(config);
+  console.log('signInAsync', authState);
+  return authState;
 }
 
-class HomeScreen extends React.Component<IProps> {
-  public render() {
-    return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Home Screen</Text>
-        <Button
-          title="Go to Details"
-          onPress={() => this.props.navigation.navigate('Details')}
-        />
-      </View>
-    );
-  }
-}
-
-class DetailsScreen extends React.Component {
-  public render() {
-    return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Details Screen</Text>
-      </View>
-    );
-  }
-}
-
-class ProfileScreen extends React.Component<IProps> {
-  public render() {
-    return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Profile Screen</Text>
-        <Button
-          title="Go to Details"
-          onPress={() => this.props.navigation.navigate('ProfileDetails')}
-        />
-      </View>
-    );
-  }
-}
-
-class ProfileDetailsScreen extends React.Component {
-  public render() {
-    return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Profile Details Screen</Text>
-      </View>
-    );
-  }
-}
-
-const ProfileStack = createStackNavigator(
-  {
-    Profile: ProfileScreen,
-    ProfileDetails: ProfileDetailsScreen,
-  },
-  {
-    initialRouteName: 'Profile',
-  },
-);
-
-const HomeStack = createStackNavigator(
-  {
-    Details: DetailsScreen,
-    Home: HomeScreen,
-  },
-  {
-    initialRouteName: 'Home',
-  },
-);
-
-const TabNavigator = createBottomTabNavigator({
-  Home: HomeStack,
-  Profile: ProfileStack,
-});
-
-const AppContainer = createAppContainer(TabNavigator);
+const AppContainer = () => <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}><Text>ddddd</Text><Button onPress={signInAsync} title="dddd" /></View>;
 
 export default class App extends React.Component {
   public render() {
